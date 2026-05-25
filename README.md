@@ -13,6 +13,8 @@ Division SSRCS workflow. It implements:
   templates;
 - full-page official form authoring with draft preservation warnings,
   completion progress and submission validation;
+- direct action routing from active CC and technical-review queues to the
+  corresponding full-page official form workspace;
 - package-document and routing/metadata workspaces;
 - role-controlled registry, reporting, audit, CS-SQA and administration views.
 
@@ -31,7 +33,7 @@ For a static preview, open [index.html](./index.html) directly in a browser.
 Application behavior is organized across the browser-loaded portal source
 scripts: `portal-data.js`, `portal-dashboard.js`, `portal-views.js`,
 `portal-case.js`, `portal-review-creation.js`, `portal-form-workspace.js`,
-and `portal-events.js`.
+`portal-direct-actions.js`, and `portal-events.js`.
 
 ## Demo Accounts
 
@@ -68,9 +70,9 @@ Form workspaces implement:
 - the external routing, signed-file verification and tagging evidence record.
 
 The case side panel is reserved for rapid case inspection and document
-preview. Completeness-check and technical-review authoring opens a dedicated
-full-page workspace so reviewers can complete official fields without
-horizontal scrolling or losing action context.
+preview. Active completeness-check and technical-review tasks open their
+dedicated full-page workspaces directly, so users do not need to enter a
+side drawer before completing official fields.
 
 The build retains changes in browser `localStorage` for walkthrough purposes.
 Production implementation requires a database, PSA-managed identity or SSO,
