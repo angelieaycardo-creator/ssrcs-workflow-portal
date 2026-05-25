@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SSRCS Workflow Portal MVP</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section id="login-screen" class="login-shell">
+      <div class="login-brand">
+        <p class="eyebrow">Philippine Statistics Authority</p>
+        <h1>SSRCS Workflow Portal</h1>
+        <p class="lead">
+          Role-based operational control for completeness checks, technical
+          review, decision packages, routing, and final documentation.
+        </p>
+        <div class="prototype-note">
+          <strong>MVP demonstration build</strong>
+          Demonstrates user roles, workflow controls, dashboards, and audit
+          activity. Production deployment requires PSA identity integration.
+        </div>
+      </div>
+      <form id="login-form" class="login-card">
+        <div>
+          <p class="eyebrow">Internal access</p>
+          <h2>Sign in</h2>
+          <p class="muted">Use a demonstration account to view each role.</p>
+        </div>
+        <label>
+          Username
+          <input id="username" name="username" autocomplete="username" value="manager" required />
+        </label>
+        <label>
+          Password
+          <input id="password" name="password" type="password" autocomplete="current-password" value="demo123" required />
+        </label>
+        <button type="submit" class="button primary">Sign in</button>
+        <p id="login-error" class="form-error hidden" role="alert"></p>
+        <details class="demo-accounts">
+          <summary>Demonstration accounts</summary>
+          <p>All passwords: <code>demo123</code></p>
+          <div id="demo-account-list"></div>
+        </details>
+      </form>
+    </section>
+
+    <div id="portal" class="portal hidden">
+      <header class="topbar">
+        <div class="topbar-brand">
+          <div class="seal">PSA</div>
+          <div>
+            <p class="eyebrow">Statistical Standards Division</p>
+            <h1>SSRCS Portal</h1>
+          </div>
+        </div>
+        <div class="topbar-controls">
+          <label class="role-control">
+            Active role
+            <select id="role-select"></select>
+          </label>
+          <button class="icon-button" id="notification-button" aria-label="Notifications">
+            Notifications <span id="notification-count" class="badge">0</span>
+          </button>
+          <div class="user-chip">
+            <span id="user-name"></span>
+            <small id="user-office"></small>
+          </div>
+          <button id="logout-button" class="button ghost">Logout</button>
+        </div>
+      </header>
+
+      <aside class="sidebar">
+        <nav id="nav-menu"></nav>
+        <div class="sidebar-footer">
+          <p class="eyebrow">Environment</p>
+          <strong>Phase 1 MVP Build</strong>
+          <small>Operational controls only</small>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <section id="dashboard-view">
+          <div id="role-banner" class="role-banner"></div>
+          <div id="kpi-cards" class="card-grid"></div>
+
+          <div class="panel-grid upper">
+            <section class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Immediate work queue</p>
+                  <h2>Priority Actions</h2>
+                </div>
+                <span id="priority-count" class="count-pill"></span>
+              </div>
+              <div id="priority-actions" class="priority-list"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Monitoring</p>
+                  <h2 id="monitor-title">Workflow Snapshot</h2>
+                </div>
+              </div>
+              <div id="monitor-panel"></div>
+            </section>
+          </div>
+
+          <section class="panel applications-panel">
+            <div class="panel-heading table-heading">
+              <div>
+                <p class="eyebrow">Permitted records</p>
+                <h2>Active Applications</h2>
+              </div>
+              <div class="filter-grid">
+                <input id="filter-search" aria-label="Search applications" placeholder="Search reference or activity" />
+                <select id="filter-phase" aria-label="Filter by phase"></select>
+                <select id="filter-status" aria-label="Filter by status"></select>
+                <select id="filter-agency" aria-label="Filter by agency"></select>
+                <select id="filter-staff" aria-label="Filter by staff"></select>
+                <select id="filter-period" aria-label="Filter by reporting period"></select>
+                <button id="clear-filters" class="button subtle">Clear</button>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>SSRCS Reference No.</th>
+                    <th>Statistical Activity</th>
+                    <th>Agency / Office</th>
+                    <th>Assigned Staff</th>
+                    <th>Phase</th>
+                    <th>Status</th>
+                    <th>Last Updated</th>
+                    <th>Aging</th>
+                    <th>Next Action</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="applications-body"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="panel activity-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Traceability</p>
+                <h2>Recent Activity</h2>
+              </div>
+            </div>
+            <div id="activity-list" class="activity-list"></div>
+          </section>
+        </section>
+
+        <section id="applications-view" class="hidden"></section>
+        <section id="reports-view" class="hidden"></section>
+        <section id="audit-view" class="hidden"></section>
+        <section id="security-view" class="hidden"></section>
+        <section id="admin-view" class="hidden"></section>
+      </main>
+    </div>
+
+    <div id="case-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="case-modal-title">
+      <div class="modal-backdrop" data-close-modal></div>
+      <article class="modal-panel">
+        <header class="modal-header">
+          <div>
+            <p class="eyebrow" id="modal-reference"></p>
+            <h2 id="case-modal-title"></h2>
+          </div>
+          <button class="icon-button close" data-close-modal aria-label="Close case details">Close</button>
+        </header>
+        <div id="modal-body" class="modal-body"></div>
+      </article>
+    </div>
+
+    <div id="toast" class="toast hidden" role="status"></div>
+    <script src="portal-data.js"></script>
+    <script src="portal-dashboard.js"></script>
+    <script src="portal-workspace.js"></script>
+    <script src="portal-events.js"></script>
+  </body>
+</html>
