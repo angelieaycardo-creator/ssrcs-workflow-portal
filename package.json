@@ -1,0 +1,11 @@
+{
+  "name": "ssrcs-workflow-portal",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SSRCS Workflow Portal Phase 1 MVP demonstration build",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "check": "node --check portal-data.js && node --check portal-dashboard.js && node --check portal-workspace.js && node --check portal-events.js && node --check server.mjs"
+  }
+}
