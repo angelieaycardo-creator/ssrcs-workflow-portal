@@ -80,7 +80,7 @@ renderApplicationsModule = function renderApplicationsWithCreationGuide() {
     <ol>
       <li>Find an assigned application marked <strong>Accepted for Technical Review</strong>.</li>
       <li>Select <strong>Create Technical Review Form</strong>.</li>
-      <li>Complete findings and recommendations in the Technical Review tab.</li>
+      <li>Complete findings and recommendations in the full Technical Review Workspace.</li>
     </ol>
   </section>`);
   visibleCases().forEach((item) => {
