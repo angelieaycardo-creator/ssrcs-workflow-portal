@@ -6,6 +6,6 @@
   "type": "module",
   "scripts": {
     "start": "node server.mjs",
-    "check": "node --check portal-data.js && node --check portal-dashboard.js && node --check portal-views.js && node --check portal-case.js && node --check portal-review-creation.js && node --check portal-form-workspace.js && node --check portal-events.js && node --check server.mjs"
+    "check": "node --check portal-data.js && node --check portal-dashboard.js && node --check portal-views.js && node --check portal-case.js && node --check portal-review-creation.js && node --check portal-form-workspace.js && node --check portal-direct-actions.js && node --check portal-events.js && node --check server.mjs"
   }
 }
