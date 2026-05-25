@@ -28,7 +28,7 @@ For a static preview, open [index.html](./index.html) directly in a browser.
 
 Application behavior is organized across the browser-loaded portal source
 scripts: `portal-data.js`, `portal-dashboard.js`, `portal-views.js`,
-`portal-case.js`, and `portal-events.js`.
+`portal-case.js`, `portal-review-creation.js`, and `portal-events.js`.
 
 ## Demo Accounts
 
