@@ -27,8 +27,8 @@ Then open `http://127.0.0.1:4173`.
 For a static preview, open [index.html](./index.html) directly in a browser.
 
 Application behavior is organized across the browser-loaded portal source
-scripts: `portal-data.js`, `portal-dashboard.js`, `portal-workspace.js`, and
-`portal-events.js`.
+scripts: `portal-data.js`, `portal-dashboard.js`, `portal-views.js`,
+`portal-case.js`, and `portal-events.js`.
 
 ## Demo Accounts
 
